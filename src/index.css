@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Onboarding Flow Design System - Purple/Blue Gradient Theme with Glass Morphism */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Purple Primary */
+    --primary: 262 52% 46%;
+    --primary-light: 262 52% 56%;
+    --primary-dark: 262 52% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Blue Accent */
+    --accent: 234 89% 74%;
+    --accent-light: 234 89% 84%;
+    --accent-dark: 234 89% 64%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Neutral System */
+    --background: 230 25% 8%;
+    --foreground: 0 0% 98%;
+    --surface: 230 20% 12%;
+    --surface-light: 230 20% 16%;
+    
+    /* Glass Effect Colors */
+    --glass-bg: 230 20% 12% / 0.3;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-shadow: 0 0% 0% / 0.2;
+
+    /* UI Components */
+    --card: 230 20% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 230 20% 12%;
+    --popover-foreground: 0 0% 98%;
+    --secondary: 230 20% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 230 20% 16%;
+    --muted-foreground: 0 0% 65%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100% / 0.1;
+    --input: 230 20% 16%;
+    --ring: 262 52% 46%;
+
+    /* Success & Warning */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(262 52% 46%) 0%, hsl(234 89% 74%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(230 20% 12% / 0.8) 0%, hsl(230 20% 16% / 0.6) 100%);
+    --gradient-surface: linear-gradient(to bottom, hsl(230 25% 8%) 0%, hsl(230 20% 6%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(262 52% 46%) 0%, hsl(234 89% 74%) 50%, hsl(262 52% 56%) 100%);
+
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 30px hsl(262 52% 46% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-elegant: 0 20px 40px hsl(0 0% 0% / 0.4);
+    --backdrop-blur: blur(20px);
+
+    /* Animation Timing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Already optimized for dark theme */
+  }
+}
+
+@layer components {
+  /* Glass Card Component */
+  .glass-card {
+    @apply bg-gradient-to-br from-surface/80 to-surface-light/60 backdrop-blur-xl border border-white/10 shadow-card;
+  }
+
+  /* Glass Button Variants */
+  .btn-glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 text-foreground hover:bg-white/20 transition-all duration-300;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-glow transition-all duration-300;
+  }
+
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary via-accent to-primary-light text-primary-foreground font-semibold px-8 py-3 rounded-xl hover:shadow-glow hover:scale-105 transition-all duration-300;
+  }
+
+  /* Progress Indicator */
+  .progress-glow {
+    @apply bg-gradient-to-r from-primary to-accent shadow-glow;
+  }
+
+  /* Form Components */
+  .input-glass {
+    @apply bg-surface/50 backdrop-blur-sm border border-white/10 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300;
+  }
+
+  /* Animated Background */
+  .animated-bg {
+    background: var(--gradient-surface);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply hover:translate-y-[-2px] hover:shadow-elegant transition-all duration-300;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-glow transition-all duration-300;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground animated-bg;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
