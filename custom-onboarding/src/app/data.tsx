@@ -1,14 +1,13 @@
 import React from "react";
 
 export default function DataPage() {
-  // Retrieve all user data from localStorage
+  // Fetch all user data from backend API
   const [userData, setUserData] = React.useState<{ name: string; email: string }[]>([]);
-
   React.useEffect(() => {
-    const data = localStorage.getItem("userDataList");
-    if (data) {
-      setUserData(JSON.parse(data));
-    }
+    fetch("/api/userdata")
+      .then(res => res.json())
+      .then(data => setUserData(data))
+      .catch(() => setUserData([]));
   }, []);
 
   return (

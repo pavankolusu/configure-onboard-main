@@ -7,13 +7,22 @@ export default function Home() {
   const [saved, setSaved] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  // Get existing data list or empty array
-  const existing = localStorage.getItem("userDataList");
-  const arr = existing ? JSON.parse(existing) : [];
-  arr.push({ name, email });
-  localStorage.setItem("userDataList", JSON.stringify(arr));
-  setSaved(true);
+    e.preventDefault();
+    fetch("/api/userdata", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email })
+    })
+      .then(res => {
+        if (res.ok) {
+          setSaved(true);
+          setName("");
+          setEmail("");
+        } else {
+          res.json().then(data => alert(data.error || "Error saving data"));
+        }
+      })
+      .catch(() => alert("Network error"));
   };
 
   return (
